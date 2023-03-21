@@ -1,0 +1,23 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB="tolq_api_development"
+      - POSTGRES_USER="postgres"
+      - POSTGRES_PASSWORD="12345"
+    ports:
+      - "5432:5432"
+  web:
+    build: .
+    command: bash -c "bundle exec rake db:create && bundle exec rake db:migrate && bundle exec rake db:seed && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    volumes:
+      - .:/myapp
+volumes:
+  db-data:

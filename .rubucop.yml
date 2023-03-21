@@ -1,0 +1,30 @@
+require: 
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+AllCops:
+  TargetRubyVersion: 2.6.5
+  TargetRailsVersion: 6.0.2
+  Exclude:
+    - 'db/schema.rb'
+    - 'node_modules/**/*'
+    - 'vendor/bundle/**/*'
+    - 'bin/**/*'
+    
+Layout/LineLength:
+  Max: 180
+  
+Metrics/MethodLength:
+  Max: 23
+
+Metrics/BlockLength:
+  Exclude:
+    - config/**/*
+    - spec/**/*
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - spec/**/*
+
+Style/Documentation:
+  Enabled: true
